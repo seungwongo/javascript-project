@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+    <style>
+      table {
+        width: 100%;
+      }
+
+      table,
+      th,
+      td {
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        border: 1px solid #222;
+        padding: 5px 10px;
+      }
+
+      th {
+        cursor: pointer;
+      }
+
+      .pagination {
+        display: inline-block;
+        margin-top: 10px;
+      }
+
+      .pagination a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .pagination a.active {
+        background-color: deeppink;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text" id="txt" /><button onclick="filter();">검색</button>
+    <table>
+      <thead>
+        <tr>
+          <th data-sort-key="name">Name</th>
+          <th data-sort-key="company">Company</th>
+          <th data-sort-key="email">Email</th>
+          <th data-sort-key="phone">Phone</th>
+          <th data-sort-key="address">Address</th>
+        </tr>
+      </thead>
+      <tbody id="user_tb"></tbody>
+    </table>
+    <div class="pagination"></div>
+    <script src="/samples/user_data.js"></script>
+    <script>
+      /**
+       * tbody에 tr,td 태그를 주어진 데이터 수 만큼 화면에 출력하는 함수
+       * @param {String} id
+       * @param {Array} data
+       */
+      function render(id, data) {
+        const h = []; //tr,td 태그에 대한 html 문자열을 담을 배열
+        for (const user of data) {
+          h.push("<tr>");
+          h.push(`<td>${user.name}</td>`);
+          h.push(`<td>${user.company}</td>`);
+          h.push(`<td>${user.email}</td>`);
+          h.push(`<td>${user.phone}</td>`);
+          h.push(`<td>${user.address}</td>`);
+          h.push("</tr>");
+        }
+
+        document.getElementById(id).innerHTML = h.join(""); //배열 h에 담긴 html 문자열을 하나로 합쳐서 innerHTML에 할당
+      }
+
+      let lastSortKey = "";
+      let bAsc = true;
+
+      /**
+       * 컬럼명(th)을 클릭하면, th의 속성 data-sort-key를 가져와서 해당 키로 배열 데이터를 정렬하는 함수
+       * @param {String} columnKey
+       * @param {Boolean} bAsc - true이면 오름차순, false이면 내림차순
+       */
+      function sort(columnKey) {
+        if (columnKey == lastSortKey) bAsc = !bAsc; //마지막으로 정렬했던 key와 현재 key가 같으면 정렬 방식 변경
+
+        let sortValue = bAsc ? 1 : -1;
+        const sortData = currentData.sort(function (a, b) {
+          //배열의 내장함수인 sort를 사용해서 배열 정렬
+          return a[columnKey] > b[columnKey]
+            ? sortValue
+            : a[columnKey] < b[columnKey]
+            ? sortValue * -1
+            : 0;
+        });
+
+        // render("user_tb", sortData);
+        changePage(currentPage);
+        lastSortKey = columnKey;
+      }
+
+      /**
+       * 사용자 입력한 검색(필터) 조건에 맞는 데이터를 출력
+       */
+      function filter() {
+        const txt = document.getElementById("txt").value; //검색 입력창에 입력한 문자열
+        if (txt == "") {
+          //필터 조건이 없으면 전체 데이터 출력
+          currentData = userList;
+          changePage(1);
+        } else {
+          const regexp = new RegExp(txt, "i"); //대소문자 구분 없이 조회하기 위해서 입력된 텍스트를 소문자로 변경
+          currentData = userList.filter(
+            (user) =>
+              regexp.test(user.name) ||
+              regexp.test(user.email) ||
+              regexp.test(user.phone) ||
+              regexp.test(user.address)
+          );
+
+          // render("user_tb", currentData);
+          changePage(1);
+        }
+      }
+
+      let totalPage = 0;
+      const pagecnt = 10;
+      let pageRange = [];
+      let currentPage = 1;
+      let showList = [];
+
+      function paging() {
+        totalPage = Math.ceil(currentData.length / pagecnt);
+        if (totalPage > 5) {
+          pageRange = [1, 2, 3, 4, 5];
+        } else {
+          pageRange = [];
+          for (var i = 1; i <= totalPage; i++) {
+            pageRange.push(i);
+          }
+        }
+
+        renderPagination();
+      }
+
+      function changePage(pageNo) {
+        currentPage = pageNo;
+        showList = [];
+        const startIdx = (pageNo - 1) * pagecnt;
+        let endIdx = pageNo * pagecnt;
+        if (endIdx > currentData.length) {
+          endIdx = currentData.length;
+        }
+
+        for (let i = startIdx; i < endIdx; i++) {
+          showList.push(currentData[i]);
+        }
+
+        render("user_tb", showList); //render 함수를 호출해서 화면에 데이터를 테이블로 출력
+        paging();
+      }
+
+      function prevPage() {
+        const pageNo = pageRange[0];
+        currentPage = pageNo;
+        pageRange = [
+          pageNo - 5,
+          pageNo - 4,
+          pageNo - 3,
+          pageNo - 2,
+          pageNo - 1,
+        ];
+
+        changePage(pageNo - 1);
+      }
+
+      function nextPage() {
+        const pageNo = pageRange[pageRange.length - 1];
+        const startIdx = pageNo + 1;
+        let endIdx = pageNo + 5;
+        if (endIdx > totalPage) {
+          endIdx = totalPage;
+        }
+
+        pageRange = [];
+        for (let i = startIdx; i <= endIdx; i++) {
+          pageRange.push(i);
+        }
+        changePage(pageNo + 1);
+      }
+
+      function renderPagination() {
+        const h = [];
+        if (pageRange[0] > 1) {
+          h.push(`<a href="javascript:prevPage();">&laquo;</a>`);
+        }
+        for (const no of pageRange) {
+          h.push(
+            `<a href="javascript:changePage(${no});" class="${
+              no == currentPage ? "active" : ""
+            }">${no}</a>`
+          );
+        }
+
+        if (pageRange[pageRange.length - 1] < totalPage) {
+          h.push(`<a href="javascript:nextPage();">&raquo;</a>`);
+        }
+
+        document.querySelector(".pagination").innerHTML = h.join("");
+      }
+
+      let currentData = userList;
+
+      window.addEventListener("load", function () {
+        document.querySelectorAll("th[data-sort-key]").forEach((th) => {
+          th.addEventListener("click", function () {
+            sort(th.getAttribute("data-sort-key"));
+          });
+        });
+        paging();
+        changePage(1);
+      });
+    </script>
+  </body>
+</html>
