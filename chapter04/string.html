@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var txt = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      var sln = txt.length;
+
+      var str = "Please locate where 'locate' occurs!";
+      var pos = str.indexOf("locate"); //7
+
+      var str = "Please locate where 'locate' occurs!";
+      var pos = str.lastIndexOf("locate"); //21
+      console.log(pos);
+
+      var str = "Please locate where 'locate' occurs!";
+      var pos = str.indexOf("locate", 15); //15번째 index 부터 찾기 시작
+
+      var str = "Apple, Banana, Kiwi";
+      var res = str.slice(7, 13); //Banana
+
+      var str = "Apple, Banana, Kiwi";
+      var res = str.slice(7); //Banana, Kiwi
+
+      var str = "Apple, Banana, Kiwi";
+      var res = str.slice(-12); //Banana, Kiwi
+
+      var str = "Apple, Banana, Kiwi";
+      var res = str.substring(7, 13); //Banana
+
+      var str = "Apple, Banana, Kiwi";
+      var res = str.substr(7, 6); //Banana
+
+      var str = "Apple, Banana, Kiwi";
+      var res = str.substr(7); //Banana, Kiwi
+
+      var str = "Apple, Banana, Kiwi";
+      var res = str.substr(-12); //Banana, Kiwi
+
+      str = "Please visit Seoul and Seoul!";
+      var n = str.replace("Seoul", "Jeju"); //Please visit Jeju and Seoul!
+
+      str = "Please visit Seoul and Seoul!";
+      var n = str.replace("SEOUL", "Jeju"); //Please visit Seoul and Seoul!
+
+      str = "Please visit Seoul and Seoul!";
+      var n = str.replace(/SEOUL/i, "Jeju"); //Please visit Jeju and Seoul!
+
+      str = "Please visit Seoul and Seoul!";
+      var n = str.replace(/Seoul/g, "Jeju"); //Please visit Jeju and Jeju!
+
+      var text1 = "Hello World!";
+      var text2 = text1.toUpperCase(); // HELLO WORLD!
+
+      var text1 = "Hello World!";
+      var text2 = text1.toLowerCase(); // hello world!
+
+      var text1 = "Hello";
+      var text2 = "World";
+      var text3 = text1.concat(" ", text2);
+      var text4 = "Hello" + " " + "World!";
+      var text5 = "Hello".concat(" ", "World!");
+
+      var str = "   	Hello World!    	";
+      console.log(str.trim()); //Hello World!
+
+      var str = "5";
+      str = str.padStart(4, 0); // 0005
+
+      var str = "5";
+      str = str.padEnd(4, 0); // 5000
+
+      var str = "HELLO WORLD";
+      str.charAt(0); // H
+
+      var str = "HELLO WORLD";
+      str.charCodeAt(0); // 72
+
+      var birthday = "1997-06-12";
+      var arr2 = birthday.split("-"); //하이픈(-)을 기준으로 문자열을 분리해서 배열로 반환
+      console.log(arr2); //["1997","06","02"]
+
+      var url = "http://website.com";
+      if (url.startsWith("http://") || url.startsWith("https://")) {
+        // 올바른 형식의 웹사이트 url
+      } else {
+        // 잘못된 형식의 웹사이트 url
+      }
+
+      var file = "abc.pdf";
+      if (file.endsWith(".pdf")) {
+        //pdf 파일
+      } else {
+        //다른 형식의 파일
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //빈 객체 생성
+      var person = new Object();
+      var person = Object();
+
+      //멤버 설정
+      person.firstName = "John";
+      person.lastName = "Doe";
+      person.age = 1200;
+      person.getFullName = function () {
+        return this.firstName + " " + this.lastName;
+      };
+      console.log(person.getFullName());
+    </script>
+  </body>
+</html>

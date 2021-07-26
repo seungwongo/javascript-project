@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var x = 123;
+      x.toString(); // 문자 타입 123
+      (123).toString(); // 문자 타입 123
+
+      var x = 10.656;
+      x.toExponential(2); // 10.66e+0
+      x.toExponential(4); // 10.6560e+0
+      x.toExponential(6); // 10.656000e+0
+
+      var x = 10.656;
+      x.toFixed(0); // 10
+      x.toFixed(2); // 10.66
+      x.toFixed(4); // 10.6560
+
+      var x = 10.656;
+      x.toPrecision(); // 10.656
+      x.toPrecision(2); // 10.7
+      x.toPrecision(4); // 10.656
+
+      parseInt("-10"); // -10
+      parseInt("-12.33"); // -10
+      parseInt("10"); // 10
+      parseInt("12.33"); // 10
+      parseInt("10 20 30"); // 10
+      parseInt("10 years"); // 10
+      parseInt("years 10"); // NaN
+
+      parseFloat("10"); // 10
+      parseFloat("12.33"); // 12.33
+      parseFloat("10 20 30"); // 10
+      parseFloat("10 years"); // 10
+      parseFloat("years 10"); // NaN
+    </script>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function getIntervalDate(day) {
+        var now = new Date();
+        var dayMilliseconds = 60 * 60 * 24 * 1000;
+
+        return new Date(now.getTime() + dayMilliseconds * day);
+      }
+
+      console.log(getIntervalDate(-9));
+    </script>
+  </body>
+</html>

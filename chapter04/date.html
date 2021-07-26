@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // new Date()
+      var now = new Date(); //사용자 브라우저의 시간을 가져옵니다.
+      console.log(now); //Fri Jun 25 2021 05:16:49 GMT+0900 (대한민국 표준시)
+
+      // new Date(year, month, day, hours, minutes, seconds, milliseconds)
+      var d = new Date(2021, 6, 24, 10, 33, 30, 0); //특정 날짜,시간을 지정해서 Date 객체 생성
+      console.log(d); //Sat Jul 24 2021 10:33:30 GMT+0900 (대한민국 표준시)
+
+      // new Date(milliseconds)
+      var d = new Date(0); //1970년1월1일
+      var d = new Date(100000000000); //1970년1월1일 + 100000000000 = 대략 1973년3월3일
+
+      // new Date(date string)
+      var d2 = new Date("October 13, 2014 11:13:00"); //날짜 문자열로 Date 객체 생성
+
+      console.log(Date.now());
+
+      var d = new Date(); //현재 날짜/시간
+      var year = d.getFullYear();
+      console.log("year", year);
+
+      var month = d.getMonth();
+      console.log("month", month);
+
+      var date = d.getDate();
+      console.log("date", date);
+
+      var day = d.getDay();
+      var hour = d.getHours();
+      var minute = d.getMinutes();
+      var second = d.getSeconds();
+    </script>
+  </body>
+</html>

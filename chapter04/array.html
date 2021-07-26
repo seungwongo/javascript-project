@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var fruits = ["Banana", "Orange", "Apple", "Mango"];
+      fruits.toString(); // Banana,Orange,Apple,Mango
+
+      var fruits = ["Banana", "Orange", "Apple", "Mango"];
+      fruits.join(" * "); // Banana * Orange * Apple * Mango
+
+      var fruits = ["Banana", "Orange", "Apple", "Mango"];
+      var x = fruits.pop(); // x = "Mango"
+
+      var fruits = ["Banana", "Orange", "Apple", "Mango"];
+      fruits.push("Kiwi"); // "Kiwi"가 fruits 배열에 추가 됩니다.
+
+      var fruits = ["Banana", "Orange", "Apple", "Mango"];
+      fruits.shift(); // "Banana"를 fruits 배열에서 제거하고, 반환합니다.
+
+      var fruits = ["Banana", "Orange", "Apple", "Mango"];
+      fruits.unshift("Lemon"); // "Lemon"을 fruits 배열 제일 앞에 추가하고 배열의 길이를 반환합니다.
+
+      var fruits = ["Banana", "Orange", "Apple", "Mango"];
+      fruits[0] = "Kiwi"; // 배열에서 인덱스가 0인 요소인 "Banana"를 "Kiwi"로 변경합니다.
+
+      var fruits = ["Banana", "Orange", "Apple", "Mango"];
+      fruits.splice(2, 0, "Lemon", "Kiwi"); // [Banana, Orange, Lemon, Kiwi, Apple, Mango]
+
+      var arr1 = ["Cecilie", "Lone"];
+      var arr2 = ["Emil", "Tobias", "Linus"];
+      var arr3 = ["Robin", "Morgan"];
+      var myChildren = arr1.concat(arr2, arr3);
+
+      var fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+      var citrus = fruits.slice(3); // [Apple, Mango]
+      var citrus2 = fruits.slice(1, 3); // [Orange, Lemon]
+    </script>
+  </body>
+</html>
