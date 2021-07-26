@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class Car {
+        constructor(modelName, modelYear, type, price) {
+          this.modelName = modelName;
+          this.modelYear = modelYear;
+          this.type = type;
+          this.price = price;
+        }
+
+        getModelName() {
+          return this.modelName;
+        }
+
+        getModelYear() {
+          return this.modelYear;
+        }
+
+        getPrice() {
+          return this.price;
+        }
+
+        setModelName(modelName) {
+          this.modelName = modelName;
+        }
+
+        setModelYear(modelYear) {
+          this.modelYear = modelYear;
+        }
+
+        setType(type) {
+          this.type = type;
+        }
+
+        setPrice(price) {
+          this.price = price;
+        }
+      }
+
+      let car = new Car("ionic", "2021", "e", 4000); //아이오닉 차량 생성
+
+      let modelName = car.getModelName(); //차량 모델명 가져오기
+      car.setPrice(4300); //차량 가격 변경
+      console.log(car.getModelName());
+      console.log(car.getModelYear());
+      console.log(car.getPrice());
+
+      car.setPrice(4100);
+      console.log(car.getPrice());
+
+      let car2 = new Car("genesis", "2021", "g", 6500);
+      console.log(car2.getModelName());
+      console.log(car2.getModelYear());
+      console.log(car2.getPrice());
+
+      class ElectricCar extends Car {
+        constructor(modelName, modelYear, price, chargeTime) {
+          super(modelName, modelYear, "e", price);
+          this.chargeTime = chargeTime;
+        }
+
+        setChargeTime(time) {
+          this.chargeTime = time;
+        }
+
+        getChargeTime() {
+          return this.chargeTime;
+        }
+      }
+
+      let eleCar1 = new ElectricCar("ionic5", "2021", 4000, 60);
+      eleCar1.setChargeTime(60);
+      console.log(eleCar1.getModelName());
+      console.log(eleCar1.getChargeTime());
+    </script>
+  </body>
+</html>

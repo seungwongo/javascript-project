@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function getScores() {
+        return [70, 80, 90];
+      }
+
+      let scores = getScores();
+
+      let x = scores[0], //배열의 인덱스 번호로 데이터에 접근
+        y = scores[1],
+        z = scores[2];
+
+      //선언 변수가 배열 문법 처럼 보이지만, 배열이 아님. 배열 리턴값을 순서대로 받기 위한 용도임.
+      let [x, y, z] = getScores();
+
+      console.log(x); // 70
+      console.log(y); // 80
+      console.log(z); // 90
+
+      function getProfile() {
+        return ["John", "Doe", ["Red", "Green", "Blue"]];
+      }
+
+      let [firstName, lastName, [color1, color2, color3]] = getProfile();
+
+      console.log(color1, color2, color3); // Red Green Blue
+    </script>
+  </body>
+</html>

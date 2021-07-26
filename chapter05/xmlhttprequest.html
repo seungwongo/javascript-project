@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // const xhr = new XMLHttpRequest(); //XMLHttpRequest 객체 생성
+      // xhr.open("POST", "/posts"); //HTTP Method, URL 정의
+      // xhr.setRequestHeader("content-type", "application/json"); //헤더 값 중 content-type 정의
+
+      // const data = {
+      //   id: 2,
+      //   title: "XHLHttpRequest",
+      //   author: "Jeremy",
+      // };
+
+      // xhr.send(JSON.stringify(data)); //JSON.stringify를 통해 오브젝트 데이터를 문자열 형태로 변경해서 전송해야 함.
+
+      // const xhr = new XMLHttpRequest(); //XMLHttpRequest 객체 생성
+      // xhr.open("GET", "https://jsonplaceholder.typicode.com/posts/1"); //HTTP Method, URL 정의
+      // xhr.setRequestHeader("content-type", "application/json"); //헤더 값 중 content-type 정의
+      // xhr.send(); // 요청 전송
+
+      // xhr.onload = () => {
+      //   if (xhr.status === 200) {
+      //     // 정상적으로 응답이 되면 status가 200
+      //     const res = JSON.parse(xhr.response); // 응답 데이터를 JSON.parse 함수로 JSON 객체로 변경
+      //     console.log(res); // 100개의 데이터를 받아 옴
+      //   } else {
+      //     // 에러 발생
+      //     console.error(xhr.status, xhr.statusText); //응답 상태와 응답 메시지를 출력
+      //   }
+      // };
+
+      // const xhr = new XMLHttpRequest(); //XMLHttpRequest 객체 생성
+      // xhr.open("POST", "https://jsonplaceholder.typicode.com/posts"); //HTTP Method, URL 정의
+      // xhr.setRequestHeader("content-type", "application/json; charset=UTF-8"); //헤더 값 중 content-type 정의
+      // xhr.send(JSON.stringify({ title: "foo", body: "bar", userId: 1 })); // 요청 전송
+
+      // xhr.onload = () => {
+      //   if (xhr.status === 201) {
+      //     // POST 요청이 정상적으로 성공이 되면 201
+      //     const res = JSON.parse(xhr.response); // 응답 데이터를 JSON.parse 함수로 JSON 객체로 변경
+      //     console.log(res); //
+      //   } else {
+      //     // 에러 발생
+      //     console.error(xhr.status, xhr.statusText); //응답 상태와 응답 메시지를 출력
+      //   }
+      // };
+
+      // const xhr = new XMLHttpRequest(); //XMLHttpRequest 객체 생성
+      // xhr.open("PUT", "https://jsonplaceholder.typicode.com/posts/1"); //HTTP Method, URL 정의
+      // xhr.setRequestHeader("content-type", "application/json; charset=UTF-8"); //헤더 값 중 content-type 정의
+      // xhr.send(JSON.stringify({ title: "foo", body: "bar", userId: 1 })); // 요청 전송
+
+      // xhr.onload = () => {
+      //   if (xhr.status === 200) {
+      //     // PUT 요청이 정상적으로 성공이 되면 200
+      //     const res = JSON.parse(xhr.response); // 응답 데이터를 JSON.parse 함수로 JSON 객체로 변경
+      //     console.log(res); //
+      //   } else {
+      //     // 에러 발생
+      //     console.error(xhr.status, xhr.statusText); //응답 상태와 응답 메시지를 출력
+      //   }
+      // };
+
+      const xhr = new XMLHttpRequest(); //XMLHttpRequest 객체 생성
+      xhr.open("DELETE", "https://jsonplaceholder.typicode.com/posts/1"); //HTTP Method, URL 정의
+      xhr.setRequestHeader("content-type", "application/json; charset=UTF-8"); //헤더 값 중 content-type 정의
+      xhr.send(); // 요청 전송
+
+      xhr.onload = () => {
+        console.log(xhr);
+        if (xhr.status === 200) {
+          // DELETE 요청이 정상적으로 성공이 되면 200
+          const res = JSON.parse(xhr.response); // 응답 데이터를 JSON.parse 함수로 JSON 객체로 변경
+          console.log(res); //
+        } else {
+          // 에러 발생
+          console.error(xhr.status, xhr.statusText); //응답 상태와 응답 메시지를 출력
+        }
+      };
+    </script>
+  </body>
+</html>

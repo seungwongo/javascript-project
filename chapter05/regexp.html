@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var str = "Hello World! world!";
+      const re = /World/; // 문자열에 World에 대응되는 문자열을 찾는 패턴 정의
+      console.log(re.test(str)); // true - test 함수를 통해 대응되는 문자열이 있으면 true, 없으면 false
+      console.log(str.search(re)); // 6 - String 객체의 내장함수인 search 함수에 정규식을 적용해서 대응되는 문자열이 발견되면 인덱스 번호 반환
+
+      var patt = /World/i; //World - 패턴, i-modifier
+
+      console.log(str.search("World"));
+
+      console.log(str.search(/world/i));
+
+      console.log(str.replace("world", "Jeremy"));
+
+      console.log(str.replace(/world/gi, "Jeremy")); //g
+
+      var str = "Is this all there is";
+      var patt1 = /[hat]/g; //[abc]
+      var result = str.match(patt1);
+      console.log(result);
+
+      //[0-9] \d
+      var str = "123abc4523kkk";
+      var patt1 = /[0-9]/g;
+      var result = str.match(patt1);
+      console.log(result);
+
+      //(red|green)
+      var str = "re, green, red, gree, gen, red,blue, yellow";
+      var patt1 = /(red|green)/g;
+      var result = str.match(patt1);
+      console.log(result);
+
+      //\d 숫자 [0-9]
+      var str = "Give 100";
+      var patt1 = /\d/g;
+      var result = str.match(patt1);
+      console.log(result);
+
+      //n+ 최소한 1개 이상
+      var str = "Hellooo";
+      var patt1 = /o+/g;
+      console.log(str.match(patt1));
+
+      //n* 0 혹은 n개
+      var str = "Hellooo World";
+      var patt1 = /lo*/g;
+      console.log(str.match(patt1));
+
+      //n? 0개 이거나 1개
+      var str = "1, 100 or 1000";
+      var patt1 = /10?/g;
+      console.log(str.match(patt1));
+
+      //우편번호 5자리
+      //32543
+      var patt1 = /^\d{5}$/;
+      var postalcode = "23452";
+      console.log(patt1.test(postalcode));
+
+      //전화번호
+      //010-2312-3354
+      var patt1 = /^(010)-\d{4}-\d{4}$/;
+      var tel = "010-2312-3354";
+      console.log(patt1.test(tel));
+
+      //이메일 주소
+      // 알파벳 소문자로 시작하고 숫자는 0회 이상, 점(.)은 없거나 한개, 한개이상의 문자, @
+      var regexp_email = /^([a-z]+\d*)+(\.?\w+)+@\w+(\.\w{2,3})+$/;
+      console.log(regexp_email.test("jeremy2021.go@gmail.com"));
+    </script>
+  </body>
+</html>

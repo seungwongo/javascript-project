@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      try {
+        nonExistentFunction(); // 존재하지 않는 함수 호출
+      } catch (error) {
+        console.error(error); // ReferenceError: nonExistentFunction is not defined
+      } finally {
+        console.log(
+          "try 코드 블록이 정상적으로 수행이 되든, 오류를 발생하든 상관없이 무조건 실행해야 할 코드를 작성합니다."
+        );
+      }
+
+      var x = 5;
+
+      try {
+        if (x == "") throw "empty";
+
+        var y = x + 3;
+        console.log(y);
+      } catch (err) {
+        console.log(`x is ${err}`);
+      } finally {
+        console.log("try/catch문 제일 마지막에 반드시 실행");
+      }
+    </script>
+  </body>
+</html>

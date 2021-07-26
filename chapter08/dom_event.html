@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+
+  <body>
+    <button onclick="myFunction();">클릭</button>
+    <button id="btn">클릭</button>
+    <button id="btn2">클릭</button>
+    <script>
+      function myFunction() {
+        console.log("onclick 이벤트 설정");
+      }
+
+      function myFunction2() {
+        console.log("이벤트 리스너 사용");
+      }
+
+      document.getElementById("btn").addEventListener("click", myFunction);
+      document.getElementById("btn2").addEventListener("click", function () {
+        console.log("이벤트 함수 실행");
+      });
+    </script>
+  </body>
+</html>

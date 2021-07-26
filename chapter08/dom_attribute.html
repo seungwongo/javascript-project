@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="text1" value="ABC" data-role="name" />
+    <br />
+    <button onclick="doSave(event);">저장</button>
+    <script>
+      var oText1 = document.getElementById("text1");
+      var textValue = oText1.value;
+      console.log(textValue);
+      console.log(document.getElementById("text1").getAttribute("value"));
+
+      console.log(oText1.hasAttribute("value"));
+      console.log(oText1.hasAttribute("data-role"));
+      oText1.removeAttribute("data-role");
+      console.log(oText1.hasAttribute("data-role"));
+
+      function doSave(e) {
+        var obj = e.target;
+        obj.disabled = true; //사용자가 중복해서 버튼을 또 클릭하지 못하도록 버튼을 disabled 시킴
+
+        // 저장을 실행하는 코드 작성
+        setTimeout(function () {
+          // 저장완료까지 2초가 소용된 것으로 가정. 2초 후 버튼을 다시 enabled
+          obj.disabled = false;
+        }, 2000);
+      }
+    </script>
+  </body>
+</html>

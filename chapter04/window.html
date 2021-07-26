@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //Window 객체 - 전역객체, Global 객체
+      alert("이것은 alert창입니다.");
+
+      if (confirm("정말 삭제하시겠습니까?")) {
+        //삭제 로직
+      }
+
+      var pass = prompt("비밀번호를 입력하세요.");
+      // console.log(pass);
+      if (pass == null) {
+        //취소 버튼 누른 경우
+      } else if (pass == "") {
+      } else if (pass != "") {
+        console.log(pass);
+      }
+
+      window.open("https://naver.com");
+
+      setTimeout(function () {
+        alert("프로그램 실행");
+      }, 1000);
+
+      var count = 0;
+
+      var fnc = setInterval(function () {
+        if (count < 5) {
+          console.log("프로그램 실행:" + count);
+          count++;
+        } else {
+          console.log("종료");
+          clearInterval(fnc);
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>
