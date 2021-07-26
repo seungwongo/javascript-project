@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 data-i18n="Order List"></h1>
+    <button data-i18n="Search"></button>
+    <script>
+      const i18n = {
+        en: {
+          "Order List": "Order List",
+          Search: "Search",
+        },
+        ko: {
+          "Order List": "주문 목록",
+          Search: "조회",
+        },
+      };
+
+      const userLanguage = "ko"; // 사용자 언어는 한국어
+
+      /**
+       * HTML 요소중 data-i18n 속성을 가지는 모든 HTML 요소를 찾아서 현재 사용자의 언어에 맞는 텍스트 값으로 변경하는 함수
+       * data-i18n 속성에 정의된 값은 변수 i18n의 각 언어 코드 별로 정의된 오브젝트이 키와 일치해야 함
+       */
+      function loadTranslation() {
+        var i18ns = document.querySelectorAll("[data-i18n]"); // data-i18n 속성을 가지고 있는 모든 HTML 요소 가져오기
+        for (const item of i18ns) {
+          item.innerText = i18n[userLanguage][item.getAttribute("data-i18n")]; // HTML 요소의 텍스트를 변수 i18n의 사용자 언어 코드에 정의된 값으로 할당
+        }
+      }
+
+      // load 이벤트가 발생하면 loadTranslation 함수를 호출해서 화면에 다국어 적용이 필요한 모든 HTML 요소를 찾아서 다국어를 적용 함
+      window.addEventListener("load", loadTranslation);
+    </script>
+  </body>
+</html>

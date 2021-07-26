@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const i18n = {
+        en: {
+          "My name is {fullName}. I am from {city}.":
+            "My name is {fullName}. I am from {city}.",
+        },
+        ko: {
+          "My name is {fullName}. I am from {city}.":
+            "제 이름은 {fullName} 입니다. 저는 {city} 출신입니다.",
+        },
+      };
+
+      /**
+       * 다국어 번역 문자열 내용 중 중괄호{} 안의 key와 동일한 오브젝트 데이터의 key를 찾아서 그 값으로 치환하는 함수
+       * @param {String} form - 다국어 번역 내용
+       * @param {Object} params - 다국어 번역 내용 중 특정 내용을 치환하기 위한 오브젝트 데이터
+       * @returns 다국어 적용 문자열
+       */
+      function t(form, params = {}) {
+        return form.replace(/{[^}]*}/g, (match) => {
+          return params[match.slice(1, -1)];
+        });
+      }
+
+      var data = {
+        id: "1",
+        fullName: "Seungwon Go",
+        city: "Jeju",
+        company: "ReturnValues",
+      };
+
+      const enText = t(
+        i18n["en"]["My name is {fullName}. I am from {city}."],
+        data
+      );
+      console.log(enText); // My name is Seungwon Go. I am from Jeju.
+
+      const koText = t(
+        i18n["ko"]["My name is {fullName}. I am from {city}."],
+        data
+      );
+      console.log(koText); // 제 이름은 Seungwon Go 입니다. 저는 Jeju 출신입니다.
+    </script>
+  </body>
+</html>
