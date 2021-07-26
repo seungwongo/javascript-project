@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var brands = ["애플", "구글", "페이스북", "아마존", "삼성전자"];
+      console.log(brands[0]); //애플
+      console.log(brands[1]); //구글
+      console.log(brands[2]); //페이스북
+      console.log(brands[3]); //아마존
+      console.log(brands[4]); //삼성전자
+
+      for (var i = 0; i < brands.length; i++) {
+        console.log(brands[i]);
+      }
+
+      var productList = [
+        // 음료 리스트
+        {
+          name: "솔의눈",
+          price: 700,
+        },
+        {
+          name: "커피",
+          price: 700,
+        },
+        {
+          name: "파워레이드",
+          price: 1200,
+        },
+        {
+          name: "오렌지",
+          price: 1000,
+        },
+        {
+          name: "보리차",
+          price: 1200,
+        },
+        {
+          name: "밀키스",
+          price: 800,
+        },
+      ];
+
+      let inputCoin = 800; //고객이 음료 구매를 위한 투입한 총 금액
+      let len = productList.length; //배열 productList에 담긴 요소의 길이
+      let outputList = []; //고객이 구매할 수 있는 음료 목록을 저장할 새로운 배열
+      for (var i = 0; i < len; i++) {
+        //productList의 모든 요소에 대한 접근
+        if (productList[i].price <= inputCoin) {
+          //음료 가격이 고객이 투입한 금액 보다 같거나 작으면
+          outputList.push(productList[i]); //outputList에 추가
+        }
+      }
+    </script>
+  </body>
+</html>
