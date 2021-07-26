@@ -36,6 +36,22 @@
           dayName = "";
           break;
       }
+
+      var d = new Date();
+      var day = d.getDay();
+      console.log("day", day);
+      var dayName = "";
+
+      var dayNames = [
+        "일요일",
+        "월요일",
+        "화요일",
+        "수요일",
+        "목요일",
+        "금요일",
+        "토요일",
+      ];
+      console.log(dayNames[day]);
     </script>
   </body>
 </html>
