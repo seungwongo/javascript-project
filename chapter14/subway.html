@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+
+  <body>
+    <label>출발역</label>
+    <select id="start"></select>
+    <label>도착역</label>
+    <select id="end"></select>
+    <label
+      ><input type="radio" name="group" value="ADULT" checked /> 성인일반</label
+    >
+    <label><input type="radio" name="group" value="YOUNG" /> 청소년</label>
+    <label><input type="radio" name="group" value="CHILD" /> 어린이</label>
+    <div>
+      <button onclick="calculate();">요금계산</button>
+    </div>
+    <div
+      id="output"
+      style="
+        width: 100%;
+        height: 150px;
+        overflow-y: auto;
+        border: 2px solid #222;
+      "
+    ></div>
+    <script>
+      const subwayList = [
+        "영등포구청역",
+        "당산역",
+        "합정역",
+        "홍대입구역",
+        "신촌역",
+        "이대역",
+        "아현역",
+        "충정로역",
+        "시청역",
+        "을지로3가역",
+        "을지로4가역",
+        "동대문역사문화공원역",
+        "신당역",
+        "상왕십리역",
+        "왕십리역",
+        "한양대역",
+        "뚝섬역",
+        "성수역",
+        "건대입구역",
+        "구의역",
+        "강변역",
+        "잠실나루역",
+        "잠실역",
+        "종합운동장역",
+        "삼성역",
+        "선릉역",
+        "역삼역",
+        "강남역",
+        "서초역",
+        "방배역",
+        "사당역",
+        "낙성대역",
+        "서울대입구역",
+        "봉천역",
+        "신림역",
+        "신대방역",
+        "구로디지털단지역",
+        "대림역",
+        "신도림역",
+        "문래역",
+      ];
+
+      const intervalDistance = 3170; //역간 거리(고정)
+
+      /**
+       * 선택된 출발역과 도착역 사이의 총 역수를 구하고, 총 이동 거리르를 구하는 함수
+       */
+      function calculate() {
+        const start = document.getElementById("start").value;
+        const end = document.getElementById("end").value;
+        const type = document.querySelector("[name=group]:checked").value;
+        var output = document.getElementById("output");
+
+        if (start == end) {
+          return output.insertAdjacentHTML(
+            "beforeend",
+            `<p>출발역은 ${subwayList[start]}, 도착역은 ${subwayList[end]}입니다. 출발역과 도착역이 같습니다.</p>`
+          );
+        }
+
+        var stationCount = 0;
+
+        if (parseInt(start) > parseInt(end)) {
+          stationCount = subwayList.length - parseInt(start) + parseInt(end);
+        } else {
+          stationCount = parseInt(end) - parseInt(start);
+        }
+
+        const distance = stationCount * intervalDistance;
+
+        const cost = calSubwayCost(distance, type);
+
+        output.insertAdjacentHTML(
+          "beforeend",
+          `<p>출발역은 ${subwayList[start]}, 도착역은 ${subwayList[end]}입니다.</p>`
+        );
+        output.insertAdjacentHTML(
+          "beforeend",
+          `<p>총 ${stationCount}개의 역을 승차했고, 총거리는 ${distance}m입니다.</p>`
+        );
+        output.insertAdjacentHTML(
+          "beforeend",
+          `<p>총 요금은 ₩${cost}입니다.</p>`
+        );
+        output.scrollTop = output.scrollHeight;
+      }
+
+      /**
+       * 총 이동 거리와 성인/청소년/일반 구분 코드를 통해 총 요금을 계산하는 함수
+       * @param {Number} distance
+       * @param {String} type
+       */
+      function calSubwayCost(distance, type) {
+        const baseAmount =
+          type == "ADULT"
+            ? 1250
+            : type == "YOUNG"
+            ? 720
+            : type == "CHILD"
+            ? 450
+            : 0;
+        if (distance <= 10000) {
+          return baseAmount;
+        } else if (distance <= 50000) {
+          return baseAmount + Math.ceil((distance - 10000) / 5000) * 100;
+        } else {
+          return (
+            baseAmount +
+            (40000 / 5000) * 100 +
+            Math.ceil((distance - 50000) / 8000) * 100
+          );
+        }
+      }
+
+      /**
+       * 지하철 목록을 출발역과 도착역 select 태그에 추가합니다.
+       */
+      function loadSubways() {
+        var h = [];
+        for (var idx in subwayList) {
+          h.push(`<option value="${idx}">${subwayList[idx]}</option>`);
+        }
+
+        document.getElementById("start").innerHTML = h.join("");
+        document.getElementById("end").innerHTML = h.join("");
+      }
+
+      window.addEventListener("load", function () {
+        loadSubways();
+      });
+    </script>
+  </body>
+</html>
