@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let person = {
+        firstName: "Jeremy",
+        lastName: "Go",
+        getFullName: function () {
+          return this.firstName + " " + this.lastName;
+        },
+      };
+
+      for (const key in person) {
+        console.log(key); //firstName, lastName, getFullName 출력
+      }
+
+      console.log(person.getFullName());
+
+      let person2 = {
+        firstName: "Jeremy",
+        lastName: "Go",
+      };
+
+      var getFullName = Symbol("getFullName");
+      person2[getFullName] = function () {
+        return this.firstName + " " + this.lastName;
+      };
+
+      for (const key in person2) {
+        console.log(key); //firstName, lastName 출력
+      }
+
+      console.log(person2[getFullName]()); //Jeremy Go
+    </script>
+  </body>
+</html>
