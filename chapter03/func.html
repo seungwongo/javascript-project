@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function sum(p1, p2) {
+        //함수 선언
+        let sum = p1 + p2;
+        return sum;
+      }
+
+      let sum1 = sum(21, 24); //함수 호출
+      let sum2 = sum(7, 16); //함수 호출
+
+      /**
+       * 덧셈 함수
+       * @param {number} n1
+       * @param {number} n2
+       * @returns n1 + n2
+       */
+      function add(n1, n2) {
+        return n1 + n2;
+      }
+
+      /**
+       * 뺄셈 함수
+       * @param {number} n1
+       * @param {number} n2
+       * @returns n1 - n2
+       */
+      function minus(n1, n2) {
+        return n1 - n2;
+      }
+
+      /**
+       * 곱셈 함수
+       * @param {number} n1
+       * @param {number} n2
+       * @returns n1 * n2
+       */
+      function multiple(n1, n2) {
+        return n1 * n2;
+      }
+
+      /**
+       * 나눗셈 함수
+       * @param {number} n1
+       * @param {number} n2
+       * @returns n1 / n2
+       */
+      function divide(n1, n2) {
+        return n1 / n2;
+      }
+
+      /**
+       * 사칙 연산 함수
+       * @param {number} n1
+       * @param {number} n2
+       * @param {string} operator
+       * @returns 사칙연산 결과
+       */
+      function calculator(n1, n2, operator) {
+        if (operator == "+") {
+          return add(n1, n2);
+        } else if (operator == "-") {
+          return minus(n1, n2);
+        } else if (operator == "*") {
+          return multiple(n1, n2);
+        } else if (operator == "/") {
+          return divide(n1, n2);
+        }
+      }
+    </script>
+  </body>
+</html>
