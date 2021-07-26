@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var age = 17;
+      var isAdult = false;
+
+      if (age > 18) {
+        //age가 18보다 크면
+        isAdult = true;
+      }
+
+      age = 19;
+      if (age > 18) {
+        //age가 18보다 크면
+        isAdult = true;
+      } else {
+        //age가 18보다 같거나 작으면
+        isAdult = false;
+      }
+
+      var hour = 22;
+      if (hour < 10) {
+        //hour가 10보다 작으면
+        console.log("Good morning");
+      } else if (hour < 18) {
+        //hour가 18보다 작으면
+        console.log("Good afternoon");
+      } else if (hour < 21) {
+        //hour가 21보다 작으면
+        console.log("Good evening");
+      } else {
+        //hour가 21 이상이면
+        console.log("Good night");
+      }
+    </script>
+  </body>
+</html>
