@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function getCurrentDate(format) {
+        var d = new Date();
+        var year = d.getFullYear(); //년도
+        var month = d.getMonth() + 1; //월
+        month = month.toString().padStart(2, 0); //월이 10보다 작을 때는 앞에 0을 추가
+        var day = d.getDate(); //일
+        format = format.replace("YYYY", year); //년도 부분을 실제 년도 값으로 변경
+        format = format.replace("MM", month); //월 부분을 실제 월 값으로 변경
+        format = format.replace("DD", day); //일자 부분을 실제 일자 값으로 변경
+
+        return format;
+      }
+
+      getCurrentDate("YYYY-MM-DD"); //2021-07-21
+      getCurrentDate("MM.DD.YYYY"); //07.21.2021
+
+      function convertDateFormat(yyyymmdd, format) {
+        var year = yyyymmdd.substr(0, 4); //년도
+        var month = yyyymmdd.substr(4, 2); //월
+        var day = yyyymmdd.substr(6, 2); //일
+        format = format.replace("YYYY", year); //년도 부분을 실제 년도 값으로 변경
+        format = format.replace("MM", month); //월 부분을 실제 월 값으로 변경
+        format = format.replace("DD", day); //일자 부분을 실제 일자 값으로 변경
+
+        return format;
+      }
+
+      convertDateFormat("20210721", "YYYY.MM.YY"); //2021.07.21
+
+      function getIntervalDate(intervalDay, format) {
+        var now = new Date();
+        var millisecondsOneDay = 60 * 60 * 24 * 1000;
+        var d = new Date(now.getTime() + millisecondsOneDay * intervalDay); //날짜 간격만큼 milliseconds 형태로 계산
+        var year = d.getFullYear(); //년도
+        var month = d.getMonth() + 1; //월
+        month = month.toString().padStart(2, 0); //월이 10보다 작을 때는 앞에 0을 추가
+        var day = d.getDate(); //일
+        format = format.replace("YYYY", year); //년도 부분을 실제 년도 값으로 변경
+        format = format.replace("MM", month); //월 부분을 실제 월 값으로 변경
+        format = format.replace("DD", day); //일자 부분을 실제 일자 값으로 변경
+
+        return format;
+      }
+
+      getIntervalDate(5, "YYYY-MM-DD"); // 현재날짜가 2021년7월21일이면, 5일 후인 2021-07-26
+      getIntervalDate(-5, "YYYY-MM-DD"); // 현재날짜가 2021년7월21일이면, 5일 전인 2021-07-16
+    </script>
+  </body>
+</html>

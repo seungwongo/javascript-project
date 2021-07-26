@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+    <meta name="google-signin-scope" content="profile email" />
+    <meta
+      name="google-signin-client_id"
+      content="60044314381-f8u1tj0a3gvq3o01p51tot1h962ji1o8.apps.googleusercontent.com"
+    />
+    <script src="https://apis.google.com/js/platform.js"></script>
+  </head>
+  <body>
+    <div id="google-signin-btn"></div>
+    <button
+      id="google-signout-btn"
+      style="display: none"
+      onclick="onSignOut();"
+    >
+      로그아웃
+    </button>
+    <script>
+      gapi.signin2.render("google-signin-btn", { onsuccess: onSignIn }); // 구글 로그인 버튼이 생성되고, 로그은 성공시 호출할 콜백 함수를 지정합니다.
+
+      function onSignIn(googleUser) {
+        const profile = googleUser.getBasicProfile(); //사용자 정보 가져오기
+        console.log("ID: " + profile.getId());
+        console.log("Full Name: " + profile.getName());
+        console.log("Given Name: " + profile.getGivenName());
+        console.log("Family Name: " + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+        const id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+
+        document.getElementById("google-signin-btn").style.display = "none"; //로그인 버튼 숨기기
+        document.getElementById("google-signout-btn").style.display = ""; //로그아웃 버튼 보이기
+      }
+
+      function onSignOut() {
+        gapi.auth2.getAuthInstance().disconnect();
+        document.getElementById("google-signin-btn").style.display = ""; //로그인 버튼 보이기
+        document.getElementById("google-signout-btn").style.display = "none"; //로그아웃 버튼 숨기기
+      }
+    </script>
+  </body>
+</html>
