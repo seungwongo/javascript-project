@@ -16,6 +16,17 @@
         console.log("The number is " + i);
         i++;
       } while (i <= 10);
+
+      var inputPrice = 7000; //사용자가 넣은 지폐 금액
+      var coinUnit = 500; //반환할 500원짜리 동전
+      var coinCount = 0; //반환될 500원짜리 총 개수를 담을 변수
+      while (inputPrice > 0) {
+        //사용자가 넣은 금액이 0이 될 때 까지
+        inputPrice = inputPrice - coinUnit; //inputPrice 금액이 500원씩 줄어 듬
+        coinCount++; //반복문이 한번 돌때 마다 반환되는 500원짜리 동전 수를 증가 시킴
+      }
+
+      console.log(coinCount); //500원짜리 총 개수
     </script>
   </body>
 </html>
