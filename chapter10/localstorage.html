@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      if (typeof Storage !== "undefined") {
+        //Storage를 사용할 수 있는지 체크
+        localStorage.setItem("title", "The Great"); //로컬스토리지에 title 키에 The Great 저장
+
+        const users = [
+          { id: 1, name: "Hyeok" },
+          { id: 2, name: "Seo" },
+        ];
+        localStorage.setItem("users", JSON.stringify(users)); //로컬스토리지에 users 키에 users 배열을 문자열로 저장
+      }
+    </script>
+  </body>
+</html>
