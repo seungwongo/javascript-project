@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let userMap = new Map();
+      userMap.set("name", "홍길동");
+      userMap.set("email", "abc@email.com");
+      userMap.set("phone", "000-0000-0000");
+      userMap.size; // 3
+
+      userMap.get("name"); // 홍길동
+
+      userMap.has("name"); //true
+
+      userMap.delete("name"); //파라미터로 키 전달
+
+      userMap.forEach(function (item) {
+        console.log(item);
+      });
+
+      userMap.clear(); //저장되어 있는 모든 데이터가 삭제 됨.
+    </script>
+  </body>
+</html>
