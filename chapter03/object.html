@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const person = {
+        firstName: "John",
+        lastName: "Doe",
+        age: 50,
+        eyeColor: "blue",
+      };
+
+      person["age"] = 51; //오브젝트명 + [ + "key" + ] 형태로 사용해서 데이터 변경
+      person.age = 51; //오브젝트명 + . + key 형태로 데이터에 접근해서 변경
+
+      console.log(person["firstName"]); //오브젝트명 + [ + "key" + ]
+      console.log(person.firstName); //오브젝트명 + . + key
+    </script>
+  </body>
+</html>
