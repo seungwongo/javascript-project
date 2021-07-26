@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+    <style>
+      .coin {
+        padding: 5px;
+        margin-right: 5px;
+      }
+
+      .drink {
+        padding: 5px;
+        margin-right: 5px;
+      }
+
+      .active {
+        background-color: yellow;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="divCoins"></div>
+    <br />
+    <div>
+      <label>음료자판기 저장된 총 금액</label
+      ><input
+        type="text"
+        name=""
+        id="total_vending_amount"
+        value="1000"
+        readonly
+      />
+      <label>투입금액</label
+      ><input type="text" name="" id="total_input_amount" value="0" readonly />
+      <label>내지갑</label
+      ><input
+        type="text"
+        name=""
+        id="total_customer_amount"
+        value="10000"
+        readonly
+      />
+    </div>
+    <br />
+    <div id="divDrinks"></div>
+    <br />
+    <div
+      id="output"
+      style="
+        width: 100%;
+        height: 150px;
+        overflow-y: auto;
+        border: 2px solid #222;
+      "
+    ></div>
+    <script>
+      let total_vending_amount = 1000;
+      let total_customer_amount = 10000;
+      let total_input_amount = 0;
+
+      const drinks = [
+        {
+          drinkId: "1",
+          drinkName: "코카콜라",
+          price: 700,
+          stock: 5,
+        },
+        {
+          drinkId: "2",
+          drinkName: "오렌지주스",
+          price: 1200,
+          stock: 5,
+        },
+        {
+          drinkId: "3",
+          drinkName: "커피",
+          price: 500,
+          stock: 5,
+        },
+        {
+          drinkId: "4",
+          drinkName: "물",
+          price: 700,
+          stock: 5,
+        },
+        {
+          drinkId: "5",
+          drinkName: "옥수수수염차",
+          price: 1200,
+          stock: 5,
+        },
+        {
+          drinkId: "6",
+          drinkName: "밀키스",
+          price: 700,
+          stock: 5,
+        },
+        {
+          drinkId: "7",
+          drinkName: "트래비",
+          price: 1000,
+          stock: 5,
+        },
+      ];
+
+      /**
+       * 동전 버튼을 클릭할 때 마다 투입한 금액 처리 함수
+       * @param {Number} amount
+       */
+      function inputAmount(amount) {
+        var output = document.getElementById("output");
+        if (amount <= total_customer_amount) {
+          //고객 지갑에 투입하려는 금액만큼 있는지 체크
+          total_input_amount += amount;
+          total_customer_amount -= amount;
+          total_vending_amount += amount;
+
+          for (var drink of drinks) {
+            if (drink.price <= total_input_amount) {
+              document.getElementById("btnDrink" + drink.drinkId).className =
+                "drink active";
+            }
+          }
+
+          document.getElementById("total_input_amount").value =
+            total_input_amount;
+          document.getElementById("total_customer_amount").value =
+            total_customer_amount;
+          document.getElementById("total_vending_amount").value =
+            total_vending_amount;
+
+          output.insertAdjacentHTML(
+            "beforeend",
+            `<p>${amount}이 투입되었습니다.</p>`
+          );
+          output.insertAdjacentHTML(
+            "beforeend",
+            `<p>총 투입 금액은 ${total_input_amount}입니다.</p>`
+          );
+          output.insertAdjacentHTML(
+            "beforeend",
+            `<p>당신의 지갑에는 ${total_customer_amount}이 남아 있습니다.</p>`
+          );
+        } else {
+          output.insertAdjacentHTML(
+            "beforeend",
+            `<p>내 지갑에 남아 있는 돈이 ${total_customer_amount} 입니다.</p>`
+          );
+          output.insertAdjacentHTML(
+            "beforeend",
+            `<p>${amount}를 투입할 수 없습니다.</p>`
+          );
+        }
+        output.scrollTop = output.scrollHeight;
+      }
+
+      /**
+       * 음료 버튼을 클릭하면, 음료 구매가 가능한지 확인하는 함수
+       * @param {Number} drinkId
+       */
+      function requestDrink(drinkId) {
+        var output = document.getElementById("output");
+        let drink = drinks.filter((d) => d.drinkId == drinkId)[0];
+        if (drink.stock > 0) {
+          if (total_input_amount >= drink.price) {
+            let changes = total_input_amount - drink.price;
+            if (total_vending_amount >= changes) {
+              output.insertAdjacentHTML(
+                "beforeend",
+                `<p>${drink.drinkName} 음료가 나왔습니다. 잔돈 ${changes}이 나옵니다.</p>`
+              );
+              total_customer_amount += changes;
+              drink.stock -= 1;
+              total_input_amount = 0;
+              total_vending_amount -= changes;
+
+              document.getElementById("total_input_amount").value =
+                total_input_amount;
+              document.getElementById("total_customer_amount").value =
+                total_customer_amount;
+              document.getElementById("total_vending_amount").value =
+                total_vending_amount;
+
+              document.getElementById("drink_stock" + drinkId).innerText =
+                drink.stock;
+
+              output.insertAdjacentHTML(
+                "beforeend",
+                `<p>이제 당신 지갑에는 총 ${total_customer_amount} 있습니다.</p>`
+              );
+
+              for (var item of drinks) {
+                document.getElementById("btnDrink" + item.drinkId).className =
+                  "drink";
+              }
+            } else {
+              output.insertAdjacentHTML(
+                "beforeend",
+                `<p>음료자판기에 잔돈이 없어서 ${drink.drinkName} 음료를 구매할 수 없습니다.</p>`
+              );
+            }
+          } else {
+            output.insertAdjacentHTML(
+              "beforeend",
+              `<p>투입하신 금액은 총 ${total_input_amount}인데, 음료 가격은 ${drink.price}여서 구매할 수 없습니다.</p>`
+            );
+          }
+        } else {
+          output.insertAdjacentHTML(
+            "beforeend",
+            `<p>선택하신 음료 ${drink.drinkName}이 재고가 없습니다.</p>`
+          );
+        }
+        output.scrollTop = output.scrollHeight;
+      }
+
+      /**
+       * 동전 버튼을 화면에 출력하는 함수
+       */
+      function renderCoins() {
+        const coins = [100, 500, 1000];
+        const h = [];
+        for (const coin of coins) {
+          h.push(
+            `<button onclick="inputAmount(${coin});" class="coin">${coin}원 투입</button>`
+          );
+        }
+
+        document.getElementById("divCoins").innerHTML = h.join("");
+      }
+
+      /**
+       * 음료 버튼을 화면에 출력하는 함수
+       */
+      function renderDrinks() {
+        const h = [];
+        for (const drink of drinks) {
+          h.push(
+            `<button onclick="requestDrink(${drink.drinkId});" id="btnDrink${drink.drinkId}" class="drink">${drink.drinkName}(${drink.price}원, 재고수<span id="drink_stock${drink.drinkId}">${drink.stock}</span>)</button>`
+          );
+        }
+
+        document.getElementById("divDrinks").innerHTML = h.join("");
+      }
+
+      window.addEventListener("load", function () {
+        renderCoins();
+        renderDrinks();
+      });
+    </script>
+  </body>
+</html>
