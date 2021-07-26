@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var y = 1; // y에 1을 할당
+      var x = y; // x에 y를 할당. x는 y 값인 1이 됨
+      x = x + y; // x에 x + y를 할당. x=1, y=1 이므로 x = 2가 됨
+      x = x - y; // x에 x -y를 할당. x=2, y=1 이므로 x = 1가 됨
+      x = 3; // x에 3를 할당
+      y = 2; // y에 2를 할당
+      x = x * y; // x에 x * y를 할당. x=3, y=2 이므로 x = 6이 됨
+      x = x / y; // x에 x / y를 할당. x=6, y=2 이므로 x = 3이 됨
+      x = x % y; // %(퍼센트)는 자바스크립트 연산에서 나머지를 뜻함. x에 x % y를 할당. x=3, y=2 이므로 3을 2로 나눈 나머지는 1, x = 1이 됨
+      x = 3; // x에 3를 할당
+      y = 2; // y에 2를 할당
+      x = x ** y; // **는 지수를 뜻함. x=3, y=2 이므로 32 = 9 가 됨. x = 9
+
+      var x = 3;
+      var y = 4;
+      x == y; // x와 y값이 같은지를 비교하기 때문에 값이 다르므로 false를 반환
+      x != y; // x와 y값이 다른지를 비교하기 때문에 값이 다르므로 true를 반환
+
+      var x = 3; // 숫자형
+      var y = "3"; // 문자형
+      x == y; // x와 y의 데이터 타입은 다르지만, 자바스크립트로 문자 3를 숫자로 타입 변환해서 비교 하게 되고, 같은지를 비교하기 때문에 값이 같으므로 true를 반환
+
+      var x = 3; // 숫자형
+      var y = "3"; // 문자형
+      x === y; // x와 y의 데이터 타입까지 비교하기때문에, false를 반환
+
+      var o1 = true && true; // true 반환, 둘다 true인 경우 true을 반환
+      var o2 = true && false; // false 반환, 둘 중 하나라도 false이면 false를 반환
+      var o3 = true || false; // true 반환, 둘 중 하나라도 true이면 true를 반환
+      var o4 = 3 == 3 && 4 == 4; // true 반환
+
+      console.log("바닐라" + " " + "JS"); // 바닐라 JS 반환
+      var myString = "바닐라";
+      myString += " JS"; // 바닐라JS 반환
+
+      // 조건 ? 값1 : 값2;
+      var age = 18;
+      var isAdult = age >= 18 ? true : false; // age가18이상이면 true, 그렇지 않으면 false를 반환.
+
+      // 조건1 ? 값1 : 조건2 ? 값2 : 값3;
+      var point = 92;
+      var grade = point >= 90 ? "A" : point >= 80 ? "B" : "C"; // point가 90 이상이면 A, 80 이상이면 B, 80 보다 작으면 C
+    </script>
+  </body>
+</html>
