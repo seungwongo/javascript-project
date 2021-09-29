@@ -6,23 +6,23 @@
 
   <body>
     <script>
-      function hello() {
-        return "Hello World";
+      function hello(name) {
+        return "Hello" + name;
       }
 
-      var hello2 = function () {
-        return "Hello World";
+      const hello2 = function (name) {
+        return "Hello" + name;
       };
 
-      var hello3 = () => "Hello World";
-
-      var hello4 = (fullName) => "Hello " + fullName;
-
-      console.log(hello4("John Doe"));
-
-      var hello5 = () => {
-        return "Hello World";
+      const hello3 = (name) => {
+        return "Hello" + name;
       };
+
+      const hello3 = (name) => {
+        return "Hello" + name;
+      };
+
+      const hello4 = (name) => "Hello " + fullName;
     </script>
   </body>
 </html>

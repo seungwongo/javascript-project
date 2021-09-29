@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      if (typeof Storage !== "undefined") {
+        console.log(sessionStorage.getItem("title"));
+        console.log(JSON.parse(sessionStorage.getItem("users"))); //배열을 문자열로 변환해서 저장한 데이터는 읽어 올 때 다시 배열로 변환해줘야 합니다.
+      }
+    </script>
+  </body>
+</html>

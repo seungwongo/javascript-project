@@ -79,14 +79,18 @@
     </div>
     <script>
       function checkLeapYear(year) {
+        //윤년인지 체크
         if (year % 400 == 0) {
+          // 400으로 나누어지면, 100, 4로도 나누어지기 때문에 윤년
           return true;
         } else if (year % 100 == 0) {
+          // 위의 if문을 통해 400으로 나누어지지 않는다는 것을 확인한 후, 100으로 나누어지면 평년
           return false;
         } else if (year % 4 == 0) {
+          // 위의 모든 조건을 만족하지 않은 후 4로 나누어지면 윤년
           return true;
         } else {
-          return false;
+          return false; // 위의 모든 조건을 만족하지 않으면 평년
         }
       }
 

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let age = 17; // 나이
+      let busFare = 0; // 버스 기본 요금
+
+      if (age <= 7) {
+        // age(나이)가 7세 이하 이면
+        busFare = 0; // 버스 기본 요금은 0원
+      } else if (age >= 8 && age <= 13) {
+        // age(나이)가 8세 이상 13세 이하 이면
+        busFare = 450; // 버스 기본 요금은 450원
+      } else if (age >= 14 && age <= 19) {
+        // age(나이)가 14세 이상 19세 이하 이면
+        busFare = 720; // 버스 기본 요금은 720원
+      } else if (age >= 20 && age < 70) {
+        // age(나이)가 20세 이상 70세 미만 이면
+        busFare = 1200; // 버스 기본 요금은 1200원
+      } else if (age >= 70) {
+        // age(나이)가 70세 이상 이면
+        busFare = 0; // 버스 기본 요금은 0원
+      }
+    </script>
+  </body>
+</html>
