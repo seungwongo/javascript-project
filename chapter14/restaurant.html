@@ -421,15 +421,15 @@
         },
       ];
 
-      var total = 0;
+      let total = 0;
 
       /**
        * 선택한 모든 메뉴에 대한 합계를 계산하는 함수
        */
       function calculateTotalAmount() {
-        var lineSum = document.getElementsByClassName("line-sum");
+        let lineSum = document.getElementsByClassName("line-sum");
         total = 0;
-        for (var l of lineSum) {
+        for (let l of lineSum) {
           total += parseInt(l.value);
         }
 
@@ -442,15 +442,15 @@
        * @param {Number} price
        */
       function changeLineSum(e, price) {
-        var qty = e.target.value;
-        var lineSum =
+        let qty = e.target.value;
+        let lineSum =
           e.target.parentNode.parentNode.getElementsByClassName("line-sum")[0];
         lineSum.value = price * parseInt(qty);
 
         calculateTotalAmount();
       }
 
-      var oSelectFood = {};
+      let oSelectFood = {};
 
       /**
        * 메뉴를 선택하면 선택한 메뉴 테이블에 추가하는 함수
@@ -464,7 +464,7 @@
 
         oSelectFood[menu.menuId] = menu;
 
-        var tr = [];
+        let tr = [];
         tr.push("<tr>");
         tr.push(`<td>${menu.menuName}</td>`);
         tr.push(`<td>${menu.price}</td>`);
@@ -488,8 +488,8 @@
        * 메뉴 버튼을 만드는 함수
        */
       function loadMenus() {
-        var h = [];
-        for (var menu of menus) {
+        let h = [];
+        for (let menu of menus) {
           h.push(
             `<button class="menu" onclick="selectFood(${menu.menuId});">${menu.menuName}(${menu.price}원)</button>`
           );
@@ -502,9 +502,9 @@
        * 신용카드/통신사/OK캐쉬백/포인트를 선택할 수 있는 select 박스를 구성하는 함수
        */
       function loadCards() {
-        var oCards = {};
+        let oCards = {};
 
-        for (var card of creditCards) {
+        for (let card of creditCards) {
           if (!oCards[card.cardType]) {
             oCards[card.cardType] = [];
           }
@@ -513,7 +513,7 @@
         }
 
         for (key in oCards) {
-          var h = [];
+          let h = [];
           h.push(
             `<option value="">${
               cardTypes.filter((c) => c.cardType == key)[0].title
@@ -528,9 +528,9 @@
           document.getElementById("sel" + key).innerHTML = h.join("");
         }
 
-        var h = [];
+        let h = [];
         h.push('<option value="">할인쿠폰을 선택하세요.</option>');
-        for (var coupon of coupons) {
+        for (let coupon of coupons) {
           h.push(`<option value="${coupon.couponId}">${coupon.title}</option>`);
         }
 
@@ -541,16 +541,16 @@
        * 선택한 메뉴와 할인종류에 따른 총 결제 금액을 계산하는 함수
        */
       function calculateAmount() {
-        realTotal = 0;
+        let realTotal = 0;
 
         if (total == 0) {
           return alert("메뉴를 먼저 선택하세요.");
         }
 
-        var discount = 0;
-        for (var type of cardTypes) {
+        let discount = 0;
+        for (let type of cardTypes) {
           if (document.getElementById("sel" + type.cardType).value != "") {
-            var cardDiscount = parseInt(
+            let cardDiscount = parseInt(
               document.getElementById("sel" + type.cardType).value
             );
             if (cardDiscount > discount) {
@@ -559,16 +559,16 @@
           }
         }
 
-        var couponId = document.getElementById("selCoupons").value;
-        var coupon = null;
+        let couponId = document.getElementById("selCoupons").value;
+        let coupon = null;
         if (couponId != "") {
           coupon = coupons.filter((c) => c.couponId == couponId)[0];
         }
 
-        var realTotal = total;
+        realTotal = total;
 
         if (coupon != null && coupon.doubleDiscount) {
-          var discountAmount = 0;
+          let discountAmount = 0;
           if (coupon.discountType == "%") {
             discountAmount = Math.round(total * (coupon.discount / 100));
           } else {
