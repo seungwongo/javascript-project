@@ -53,6 +53,10 @@
        * @returns
        */
       function checkKr(e) {
+        e.target.value = e.target.value.replace(/[^0-9]/gi, "");
+      }
+
+      function checkFloatKr(e) {
         e.target.value = e.target.value.replace(/[^0-9]\./gi, "");
       }
 
@@ -69,7 +73,9 @@
           document
             .getElementById(eleId)
             .addEventListener("keydown", checkFloat);
-          document.getElementById(eleId).addEventListener("keyup", checkKr);
+          document
+            .getElementById(eleId)
+            .addEventListener("keyup", checkFloatKr);
         }
       }
 
