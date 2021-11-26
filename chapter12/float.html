@@ -7,7 +7,7 @@
     <input
       type="text"
       onkeydown="checkFloat(event);"
-      onkeyup="checkKr(event);"
+      onkeyup="checkFloatKr(event);"
     />
     <script>
       /**
@@ -35,8 +35,8 @@
        * @param {event} e
        * @returns
        */
-      function checkKr(e) {
-        e.target.value = e.target.value.replace(/[^0-9]/gi, "");
+      function checkFloatKr(e) {
+        e.target.value = e.target.value.replace(/[^0-9]\./gi, "");
       }
     </script>
   </body>
